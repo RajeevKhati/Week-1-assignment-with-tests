@@ -6,8 +6,34 @@
   - `npm run test-palindrome`
 */
 
+function isCharacterALetter(char) {
+  return /[a-zA-Z]/.test(char);
+}
+
 function isPalindrome(str) {
-  return true;
+  const strArray = str.split("");
+  let isPalindrome = true;
+  let startIndex = 0;
+  let endIndex = strArray.length - 1;
+  while (startIndex < endIndex) {
+    if (!isCharacterALetter(strArray[startIndex])) {
+      startIndex++;
+      continue;
+    }
+    if (!isCharacterALetter(strArray[endIndex])) {
+      endIndex--;
+      continue;
+    }
+    if (
+      strArray[startIndex].toLowerCase() !== strArray[endIndex].toLowerCase()
+    ) {
+      isPalindrome = false;
+      break;
+    }
+    startIndex++;
+    endIndex--;
+  }
+  return isPalindrome;
 }
 
 module.exports = isPalindrome;
